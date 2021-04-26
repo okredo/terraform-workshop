@@ -9,13 +9,20 @@ terraform {
 }
 
 provider "aws" {
+<<<<<<< HEAD
   region     = "us-east-1"
+=======
+        region = "us-west-2"
+        shared_credentials_file = "~/.aws/credentials"
+  	profile  = "profile-name"
+>>>>>>> dcaaa1b (tweaks for when vpc exists)
 }
 
 resource "aws_instance" "exercise_0000" {
-  ami           = "ami-07ebfd5b3428b6f4d"
-  instance_type = "t2.micro"
-
+  ami           = "ami-in-your-region"
+  instance_type = "t1.micro"
+  subnet_id = "sg-subnet-in-your-vpc"
+  vpc_security_group_ids = ["sg-security-group-in-your-vpc"]
   tags = {
     Name      = "exercise_0000"
     Terraform = true
